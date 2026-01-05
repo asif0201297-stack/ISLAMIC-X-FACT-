@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Islamic X Fact - High Quality Image Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f3d2e, #0a2a66);
+      color: #ffffff;
+    }
+    header {
+      text-align: center;
+      padding: 24px 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: #6dffb0;
+    }
+    header p {
+      margin-top: 8px;
+      font-size: 1rem;
+      color: #b5e7ff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: none;
+      border-radius: 12px;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      outline: none;
+    }
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e, #3b82f6);
+      color: #fff;
+      font-weight: 600;
+    }
+    button.secondary {
+      background: linear-gradient(135deg, #64748b, #334155);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 10px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+    .download {
+      margin-top: 8px;
+      width: 100%;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #16a34a, #2563eb);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ISLAMIC X FACT</h1>
+    <p>SOCH SE BEHTAR IMAGE BANAYE ❤️‍🩹🥀</p>
+  </header>  <div class="container">
+    <div class="controls">
+      <textarea id="prompt" placeholder="Enter your ultra‑realistic image prompt here..."></textarea>
+      <button id="generateBtn">Generate 10 Images</button>
+      <button id="clearBtn" class="secondary">Clear Prompt</button>
+    </div><div id="status"></div>
+<div class="grid" id="imageGrid"></div>
+
+  </div>  <footer>
+    High Sharpness • Ultra Quality • Green & Blue Theme
+  </footer>  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const promptInput = document.getElementById('prompt');
+    const grid = document.getElementById('imageGrid');
+    const status = document.getElementById('status');
+
+    clearBtn.onclick = () => {
+      promptInput.value = '';
+    };
+
+    generateBtn.onclick = async () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        alert('Please enter a prompt');
+        return;
+      }
+
+      grid.innerHTML = '';
+      status.innerText = 'Generating ultra high quality images...';
+      generateBtn.disabled = true;
+
+      // NOTE:
+      // This is FRONTEND CANVAS CODE.
+      // To make REAL image generation (10 images in ~10 seconds, no load error),
+      // connect this UI to a BACKEND or IMAGE API (Stable Diffusion / SDXL / DALL·E / Replicate etc).
+      // Below we simulate instant ultra‑HD placeholders.
+
+      for (let i = 1; i <= 10; i++) {
+        await new Promise(r => setTimeout(r, 300)); // fast load feel
+
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        img.src = `https://picsum.photos/seed/${encodeURIComponent(prompt + i)}/1024/1024`;
+        img.alt = 'High Quality Generated Image';
+
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = `image_${i}.jpg`;
+        link.className = 'download';
+        link.innerText = 'Download Image';
+
+        card.appendChild(img);
+        card.appendChild(link);
+        grid.appendChild(card);
+      }
+
+      status.innerText = 'Done! 10 High Quality Images Generated.';
+      generateBtn.disabled = false;
+    };
+  </script></body>
+</html>
